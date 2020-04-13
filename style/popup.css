@@ -1,0 +1,29 @@
+.slinkyTag {
+    display: inline-block;
+    height: 30px;
+    background: rgba(102,45,145,1);
+    width: fit-content;
+    padding: 0 5px;
+    margin: 2px 1px;
+    border-radius: 3px;
+    color: white;
+    font-weight: bolder;
+    font-size: 20px;
+}
+.tagInput {
+    width: 100%;
+}
+
+.show {
+    opacity: 1;
+    transition: opacity 1000ms;
+}
+
+.hide {
+    opacity: 0;
+    transition: opacity 1000ms;
+}
+
+.hidden {
+    opacity: 0;
+}

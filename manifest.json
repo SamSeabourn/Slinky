@@ -1,0 +1,60 @@
+{
+    "manifest_version": 2,
+    "name": "Slinky: Bulk bookmarking",
+    "author": "SamSeabourn.com",
+    "description": "This extension allows you rapidly add and filter bookmarks",
+    "version": "0.0.1",
+    "browser_action": {
+        "default_icon": "icons/icon48.png",
+        "default_popup": "popup.html"
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png"
+    },
+    "externally_connectable": {
+        "matches": [
+            "*://localhost:*/*"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "js/slinky.js"
+            ],
+            "css": [
+                "style/slinky.css"
+            ]
+        }
+    ],
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Alt+B"
+            }
+        },
+        "open-slinky" : {
+            "suggested_key": {
+                "default" : "Alt+V",
+                "windows" : "Alt+V"
+            },
+            "description" : "Open Slinky Boomarks"
+        }       
+    },
+    "background": {
+        "scripts": [
+        ],
+        "page": "background.html",
+        "persistent": true
+    },
+    "permissions": [
+        "activeTab",
+        "bookmarks",
+        "tabs",
+        "identity"
+    ],
+    "content_security_policy":"script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com https://apis.google.com; object-src 'self'"
+}
