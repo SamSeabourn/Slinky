@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Bookmark from './components/Bookmark'
+import BookmarkContainer from './components/BookmarkContainer'
+import SideBar from './components/SideBar'
 import './index.css';
 
 //TODO, we will get this updates when firebase updates 
@@ -63,7 +66,12 @@ var userBookmarks = [
 class App extends React.Component{
     render(){
         return(
-            <div>Hi Peeps</div>
+            <div className="App">
+                <div className="flexbox">
+                    <SideBar />
+                    <BookmarkContainer />
+                </div>
+            </div>
         )
     }
 }
