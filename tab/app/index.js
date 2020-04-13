@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+//TODO, we will get this updates when firebase updates 
 var userBookmarks = [
     {
       "title": "Slinky – Firebase console",
@@ -57,6 +58,7 @@ var userBookmarks = [
       "isDeleted": false
     }
   ]
+
 
 class App extends React.Component{
     render(){
