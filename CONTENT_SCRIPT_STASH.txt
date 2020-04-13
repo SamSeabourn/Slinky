@@ -1,0 +1,14 @@
+"content_scripts": 
+    [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "js/slinky.js"
+            ],
+            "css": [
+                "style/slinky.css"
+            ]
+        }
+    ],

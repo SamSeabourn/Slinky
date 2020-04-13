@@ -17,14 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
   tagInputElement.focus();
 
   chrome.tabs.getSelected(null, function (tab) {
+    console.log(tab)
     if (tab.url !== undefined || tab.url !== null) {
       currentWebsite.url = tab.url;
     }
-    if (tab.favIconUrl !== undefined || tab.favIconUrl !== null) {
-      currentWebsite.favicon = tab.favIconUrl;
-    } else {
-      currentWebsite.favicon = "No image";
-    }
+    if (tab.favIconUrl === "") {
+      currentWebsite.favicon = "../../icons/icon16.png";
+    } 
     if (tab.title !== undefined || tab.title !== null) {
       currentWebsite.title = tab.title;
     }

@@ -1,10 +1,7 @@
 
-///chrome.tabs.create({url:"popup.html"});
-/////////////////THIS IS HOW YOU GET THE BOOKMARK LIBRARY PAGE TO OPEN!!!
-
 var currentUser = new User;
 var bookmarkDB;
-var currentLinks;
+var usersBookmarks = [];
 
 firebase.initializeApp(firebaseConfig);
 
@@ -42,8 +39,36 @@ function saveData(website) {
 }
 
 function setFirebaseUpdateListener(){
+
+    // Needs to rebuild the object from Firebase
+    function gotData(data){
+        usersBookmarks = [];
+        var bookmarks = data.val()
+        var keys = Object.keys(bookmarks)
+        for (var i = 0; i < keys.length; i++ ){
+            var k = keys[i]
+            var bookmark = new Bookmark(
+                bookmarks[k].url,
+                bookmarks[k].favicon,
+                bookmarks[k].title,
+                bookmarks[k].tags,
+                bookmarks[k].clicks
+            )
+            usersBookmarks.push(bookmark)
+        }
+        console.log(usersBookmarks);
+    }
+    
+    function errData(data){
+        console.error("Error")
+        console.error(err)
+    }
+
     bookmarkDB = firebase.database().ref().child("users").child(currentUser.uId).child("bookmarks");
-    bookmarkDB.on('value', snap => console.log(snap.val()));
+    bookmarkDB.on('value', function(snapshot) {
+        if (snapshot.val() !== undefined)
+        bookmarkDB.on('value', gotData, errData)
+    })
 }
 
 
