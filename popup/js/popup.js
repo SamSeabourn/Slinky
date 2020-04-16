@@ -21,7 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
       currentWebsite.url = tab.url;
     }
     if (tab.favIconUrl === "") {
-      currentWebsite.favicon = "../../icons/icon16.png";
+      currentWebsite.favicon = "../../icons/icon48.png";
+    }
+    else {
+      currentWebsite.favicon = tab.favIconUrl;
     } 
     if (tab.title !== undefined || tab.title !== null) {
       currentWebsite.title = tab.title;

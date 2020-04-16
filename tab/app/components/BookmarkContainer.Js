@@ -1,85 +1,83 @@
 import React, { Component } from 'react';
 import Bookmark from './Bookmark';
 
+
 const SearchBar = () => 
     <div>
-        <input className="slinkySearch" type="text" value="jjjjqy" contentEditable="true"></input>
+        <input type="text" value="jjjjqy" contentEditable="true"></input>
     </div>; 
 
 
 class BookmarkContainer extends Component{
+
     state = {
         bookmarks: [
             {
-              "bId": "-M50h1jlZalkQPZlWEx_",
-              "title": "Slinky – Firebase console",
-              "url": "https://console.firebase.google.com/u/0/project/slinky-0001/database/slinky-0001/data",
-              "favicon": "icons/icon48",
+              "bId": "-M50v_SnkBt033E-QgkY",
+              "title": "Extensions",
+              "url": "chrome://extensions/",
+              "favicon": "../../icons/icon48.png",
               "tags": [
+                "does",
                 "this",
-                "sis",
-                "is",
-                "so",
-                "cool"
+                "happed",
+                "again"
               ],
               "clicks": 0,
               "isDeleted": false
             },
             {
-              "bId": "-M50hITqodnHqYCW9h_H",
-              "title": "React: Nested Components and Props - YouTube",
-              "url": "https://www.youtube.com/watch?v=7Mftj2FaRsg",
-              "favicon": "icons/icon48",
+              "bId": "-M50vbLUqDWIlCyOmygT",
+              "title": "java - Setting custom key when pushing new data to firebase database - Stack Overflow",
+              "url": "https://stackoverflow.com/questions/37483406/setting-custom-key-when-pushing-new-data-to-firebase-database",
+              "favicon": "https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d",
               "tags": [
-                "test",
-                "react",
-                "cool",
-                "tutorial",
-                "javascript"
+                "stack",
+                "overflow"
               ],
               "clicks": 0,
               "isDeleted": false
             },
             {
-              "bId": "-M50hN_nu3nP5qBY_feM",
-              "title": "React JS Crash Course - YouTube",
-              "url": "https://www.youtube.com/watch?v=sBws8MSXN7A",
-              "favicon": "icons/icon48",
+              "bId": "-M50vfFBX5LrUKrxEb5x",
+              "title": "SSVM - Microsoft Azure",
+              "url": "https://portal.azure.com/#@samseabourn.onmicrosoft.com/resource/subscriptions/773e0c90-d5b3-413f-a351-f9448f027262/resourceGroups/SamSeabournWork/providers/Microsoft.Compute/virtualMachines/SSVM/overview",
+              "favicon": "https://portal.azure.com/favicon.ico",
               "tags": [
-                "react",
-                "crash",
-                "course",
-                "traverst",
-                "cool"
+                "azure",
+                "vm",
+                "link",
+                "work",
+                "solentive"
               ],
               "clicks": 0,
               "isDeleted": false
             },
             {
-              "bId": "-M50hS9iTWn4UleN0tN8",
-              "title": "slinkyio-app-creative_v2 – Figma",
-              "url": "https://www.figma.com/file/iKyxNeU15U48es4QiCdxVs/slinkyio-app-creative_v2?node-id=0%3A1",
-              "favicon": "icons/icon48",
+              "bId": "-M50voPYJovRW31T8svX",
+              "title": "Slinky – Firebase console",
+              "url": "https://console.firebase.google.com/u/0/project/slinky-0001/database/slinky-0001/data/~2F",
+              "favicon": "https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/favicon.ico",
               "tags": [
-                "slinky",
-                "figma",
-                "design",
-                "neon",
-                "vaporwave"
+                "firebase",
+                "google",
+                "api",
+                "learning"
               ],
               "clicks": 0,
               "isDeleted": false
             },
             {
-              "bId": "-M50hUrKHoiQRs2FZB2s",
-              "title": "In Laravel 5.7 React app, getting the error: 'classProperties' isn't currently enabled",
-              "url": "https://laracasts.com/discuss/channels/general-discussion/in-laravel-57-react-app-getting-the-error-classproperties-isnt-currently-enabled",
-              "favicon": "icons/icon48",
+              "bId": "-M50vv8U0moQdIA0Why6",
+              "title": "Payroll | My Payroll",
+              "url": "https://payroll.xero.com/EmployeePortal/PayRunHistory/Details/289261216?CID=!zmJKG",
+              "favicon": "https://edge.xero.com/images/1.0.0/favicon/favicon.ico",
               "tags": [
-                "more",
-                "stif",
-                "to",
-                "learn"
+                "xero",
+                "fianace",
+                "cash",
+                "invoicing",
+                "worktool"
               ],
               "clicks": 0,
               "isDeleted": false
@@ -93,8 +91,10 @@ class BookmarkContainer extends Component{
             <div className="bookmarkcontainer-flexbox">
                 <div className="search-area">
                     <SearchBar />
-                    <div className="slinkyUnderScoreLine"></div>
-                    {this.state.bookmarks.map((bookmark) => <Bookmark key={bookmark.bId} bookmark={bookmark}/>)}
+                    <div className="slinky-search-underscore"></div>
+                    <div className="bookmark-container">
+                        {this.state.bookmarks.map((bookmark) => <Bookmark key={bookmark.bId} bookmark={bookmark}/>)}
+                    </div> 
                 </div>
             </div>
         )

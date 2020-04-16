@@ -1,5 +1,6 @@
 body {
-    margin: 0px
+    margin: 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .flexbox {
@@ -13,8 +14,8 @@ body {
 
 .bookmarkcontainer-flexbox {
     flex: 1;
-    padding: 1vw 75px
-    
+    padding: 1vw 75px;
+    background: #f5f5f5;
 }
 
 .sidebar {
@@ -41,20 +42,73 @@ body {
     box-shadow: none;
     border-color: transparent;
     border-right: 1px solid transparent;
-
+    background-color: transparent;
 }
 
-.search-area .slinkyUnderScoreLine{
+.search-area .slinky-search-underscore{
     height: 5px;
     background: rgb(41,171,226);
     background: linear-gradient(240deg, rgba(41,171,226,1) 0%, rgba(255,123,172,1) 100%);
     position: relative;
+    margin-bottom: 50px;
+}
+
+.search-area .bookmark-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 1%;
+    grid-row-gap: 10%;
 }
 
 .search-area .bookmark {
-    display: inline-flex;
-    width: 31%;
-    height: 50px;
-    border: 2px solid magenta;
-    border-radius: 25px;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    height: 60px;
+    border-radius: 50px;
+    background: white;
 }
+
+.search-area .bookmark:hover {
+    background: rgb(41,171,226);
+    background: linear-gradient(240deg, rgba(41,171,226,1) 0%, rgba(255,123,172,1) 100%);
+    box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.15);
+    color: #fff;
+}
+
+.search-area .bookmark .image-box {
+    height: 59px;
+    width: 59px;
+    min-width: 59px;
+    max-width: 59px;
+    border-radius: 30px;
+    margin-right: 5px;
+    background-color: #fff;
+}
+
+.search-area .bookmark .image-box img {
+    width: 101%;
+    overflow: hidden;
+}
+
+.search-area .bookmark .content-box {
+    width: 100%;
+}
+
+.search-area .bookmark .options-box {
+    height: 60px;
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+}
+
+.search-area .bookmark .content-box h3 {
+    margin: 0;
+    margin-top: 4px;
+    display: block;
+    max-height: 27px;
+    max-width: 23vw;
+    white-space:nowrap;
+    overflow: hidden;
+}
+
