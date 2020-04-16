@@ -13,6 +13,7 @@ body {
 
 .bookmarkcontainer-flexbox {
     flex: 1;
+    
 }
 
 .sidebar {
@@ -23,4 +24,39 @@ body {
 
 .sidebar img {
     margin: 12.5%;
+}
+
+.search-area {
+    height:80px;
+    margin: 0 3.5vw;
+    margin-top: 10px;
+}
+
+.search-area input {
+    height: 46px;
+    width: 100%;
+    border: none;
+    font-size: 50px;
+    padding: 0px;
+    outline-style: none;
+    box-shadow: none;
+    border-color: transparent;
+    border-right: 1px solid transparent;
+
+}
+
+.search-area .slinkyUnderScoreLine{
+    height: 5px;
+    background: rgb(41,171,226);
+    background: linear-gradient(240deg, rgba(41,171,226,1) 0%, rgba(255,123,172,1) 100%);
+    margin-bottom: 40px;
+}
+
+.search-area .bookmark {
+    display: inline-block;
+    width: 30%;
+    height: 50px;
+    border: 2px solid magenta;
+    border-radius: 25px;
+    margin: 5px
 }

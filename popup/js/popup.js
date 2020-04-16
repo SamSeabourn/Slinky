@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
   tagInputElement.focus();
 
   chrome.tabs.getSelected(null, function (tab) {
-    console.log(tab)
     if (tab.url !== undefined || tab.url !== null) {
       currentWebsite.url = tab.url;
     }

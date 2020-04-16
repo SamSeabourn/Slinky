@@ -25,16 +25,16 @@ firebase.auth().onAuthStateChanged(function (user) {
 /// Waiting on post from popup.jj
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        var website = request;
-        saveData(website)
+        var newBookmark = request;
+        saveData(newBookmark)
         sendResponse({ message: "Sending data to DB" });
     });
 
-function saveData(website) {
-    if (urlAlreadyExists(website.url)){
-        bookmarkDB.child(getKeyFromUrl(website.url)).set(website);
+function saveData(newBookmark) {
+    if (urlAlreadyExists(newBookmark.url)){
+        bookmarkDB.child(getKeyFromUrl(newBookmark.url)).set(newBookmark);
     } else {
-        bookmarkDB.push(website);
+        bookmarkDB.push(newBookmark);
     } 
 }
 
@@ -52,10 +52,12 @@ function setFirebaseUpdateListener(){
                 bookmarks[k].favicon,
                 bookmarks[k].title,
                 bookmarks[k].tags,
-                bookmarks[k].clicks
+                bookmarks[k].clicks, 
             )
+            bookmark.bId = k //Grabbing the key direct from firebase
             usersBookmarks.push(bookmark)
         }
+        console.log("this is the object from the DB braaah")
         console.log(usersBookmarks);
     }
     
@@ -88,6 +90,9 @@ function getKeyFromUrl(url){
     })
     return key;
 }
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Logo from "../../../icons/slinky-white-vector.svg"
+import Logo from "../../../icons/slinky-white-vector-text.svg"
 
 
 class SideBar extends Component{

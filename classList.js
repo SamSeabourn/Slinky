@@ -1,5 +1,6 @@
 class Bookmark {
-    constructor(url, favicon = "icons/icon48", title, tags = [], clicks = 0, isDeleted = false) {
+    constructor(url, favicon = "icons/icon48", title, tags = [], clicks = 0, isDeleted = false, id = null) {
+      this.bId = id //ID is nullable because it is set automatical in the DB but is the added to the object for the view
       this.title = title;
       this.url = url;
       this.favicon = favicon;
