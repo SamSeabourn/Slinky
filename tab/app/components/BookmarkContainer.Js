@@ -3,7 +3,7 @@ import Bookmark from './Bookmark';
 
 const SearchBar = () => 
     <div>
-        <input className="slinkySearch" type="text" contentEditable="true"></input>
+        <input className="slinkySearch" type="text" value="jjjjqy" contentEditable="true"></input>
     </div>; 
 
 
