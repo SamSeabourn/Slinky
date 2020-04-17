@@ -13,6 +13,8 @@ export class BookmarkContainer extends Component{
             })
         })
         console.log('hello there, Im the delete function')
+        // console.log(firebaseConfig)
+
     }
 
     updateSearchTerms = (e) =>{
@@ -46,7 +48,7 @@ export class BookmarkContainer extends Component{
                 "again"
               ],
               "clicks": 0,
-              "isDeleted": true
+              "isDeleted": false
             },
             {
               "bId": "-M50vbLUqDWIlCyOmygT",
@@ -105,7 +107,6 @@ export class BookmarkContainer extends Component{
               "isDeleted": false
             }
           ],
-        visabeBookmarks: [],
         currentSearch: [] 
     }
 
@@ -122,13 +123,17 @@ export class BookmarkContainer extends Component{
                     />
                     <div className="slinky-search-underscore"></div>
                     <div className="bookmark-container">
-                        {this.state.bookmarks.map((bookmark) =>
-                            <Bookmark 
-                                key={bookmark.bId} 
-                                bookmark={bookmark} 
-                                deleteBookmark={this.deleteBookmark} 
-                                openBookmark={this.openBookmark}
-                            />
+                        {this.state.bookmarks.map((bookmark) => {
+                            if (bookmark.isDeleted) {
+                                return
+                            } else {
+                                return <Bookmark
+                                    key={bookmark.bId}
+                                    bookmark={bookmark}
+                                    deleteBookmark={this.deleteBookmark}
+                                    openBookmark={this.openBookmark} 
+                                />
+                            }}
                         )}
                     </div> 
                 </div>
