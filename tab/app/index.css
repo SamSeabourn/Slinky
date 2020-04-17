@@ -112,3 +112,19 @@ body {
     overflow: hidden;
 }
 
+.search-area .bookmark .options-box img {
+    height: 30px;
+    width: 30px;
+    margin: 14px;
+}
+
+.search-area .bookmark .options-box img:hover {
+    height: 30px;
+    width: 30px;
+    margin: 14px;
+
+}
+
+
+
+

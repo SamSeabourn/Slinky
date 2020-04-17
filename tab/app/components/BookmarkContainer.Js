@@ -1,14 +1,44 @@
 import React, { Component } from 'react';
 import Bookmark from './Bookmark';
+import SearchBar from './SearchBar';
 
 
-const SearchBar = () => 
-    <div>
-        <input type="text" value="jjjjqy" contentEditable="true"></input>
-    </div>; 
+export class BookmarkContainer extends Component{
+    deleteBookmark = (bId) => {
+        this.setState({ bookmarks: this.state.bookmarks.map(bookmark => {
+            if(bookmark.bId === bId) {
+                bookmark.isDeleted = true;
+            }
+            return bookmark;
+            })
+        })
+        console.log('hello there, Im the delete function')
+    }
 
+    updateSearchTerms = (e) =>{
+        this.setState({currentSearch: e.target.value.toLowerCase().trim().split(" ")}) 
+        console.log(this.state.currentSearch)
+    }
 
-class BookmarkContainer extends Component{
+    openBookmark = (e) => {
+        console.log('hi Im going to open the selected bookmark')
+    }
+
+    updateVisableBookmarks = () => {
+        this.setState({ visabeBookmarks: this.state.bookmarks.map(bookmark =>{
+            if (!bookmark.isDeleted){
+                return bookmark;
+            }
+        })}) 
+    }
+
+    disableLinkOpen = (e) => {
+        console.log("disable link opening")
+    }
+
+    enableLinkOpen = (e) => {
+        console.log("enable link opening")
+    }
 
     state = {
         bookmarks: [
@@ -24,7 +54,7 @@ class BookmarkContainer extends Component{
                 "again"
               ],
               "clicks": 0,
-              "isDeleted": false
+              "isDeleted": true
             },
             {
               "bId": "-M50vbLUqDWIlCyOmygT",
@@ -83,17 +113,31 @@ class BookmarkContainer extends Component{
               "isDeleted": false
             }
           ],
-        currentSearch: "" 
+        visabeBookmarks: [],
+        currentSearch: [] 
     }
+
+    
 
     render(){
         return(
             <div className="bookmarkcontainer-flexbox">
                 <div className="search-area">
-                    <SearchBar />
+                    <SearchBar 
+                        updateSearchTerms={this.updateSearchTerms}
+                        disableLinkOpen={this.disableLinkOpen}
+                        enableLinkOpen={this.enableLinkOpen}
+                    />
                     <div className="slinky-search-underscore"></div>
                     <div className="bookmark-container">
-                        {this.state.bookmarks.map((bookmark) => <Bookmark key={bookmark.bId} bookmark={bookmark}/>)}
+                        {this.state.bookmarks.map((bookmark) => 
+                            <Bookmark 
+                                key={bookmark.bId} 
+                                bookmark={bookmark} 
+                                deleteBookmark={this.deleteBookmark} 
+                                openBookmark={this.openBookmark}
+                            />
+                        )}
                     </div> 
                 </div>
             </div>
