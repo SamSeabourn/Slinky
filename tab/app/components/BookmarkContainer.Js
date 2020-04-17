@@ -24,14 +24,6 @@ export class BookmarkContainer extends Component{
         console.log('hi Im going to open the selected bookmark')
     }
 
-    updateVisableBookmarks = () => {
-        this.setState({ visabeBookmarks: this.state.bookmarks.map(bookmark =>{
-            if (!bookmark.isDeleted){
-                return bookmark;
-            }
-        })}) 
-    }
-
     disableLinkOpen = (e) => {
         console.log("disable link opening")
     }
@@ -130,7 +122,7 @@ export class BookmarkContainer extends Component{
                     />
                     <div className="slinky-search-underscore"></div>
                     <div className="bookmark-container">
-                        {this.state.bookmarks.map((bookmark) => 
+                        {this.state.bookmarks.map((bookmark) =>
                             <Bookmark 
                                 key={bookmark.bId} 
                                 bookmark={bookmark} 
