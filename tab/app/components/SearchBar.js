@@ -5,7 +5,12 @@ export class SearchBar extends Component{
     render(){
         return(
             <div>
-                <input type="text" onChange={this.props.updateSearchTerms}></input>
+                <input type="text" 
+                    onChange={this.props.updateSearchTerms}
+                    autoFocus
+                    contentEditable="true"
+                    >
+                </input>
             </div>  
         )
     }

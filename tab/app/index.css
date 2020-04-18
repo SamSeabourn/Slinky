@@ -41,7 +41,6 @@ body {
     width: 100%;
     box-shadow: none;
     border-color: transparent;
-    border-right: 1px solid transparent;
     background-color: transparent;
 }
 
@@ -125,6 +124,10 @@ body {
 
 }
 
-
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #ccc;
+    font-style: italic;
+    font-weight: 100;
+  }
 
 

@@ -24,7 +24,7 @@
                 "<all_urls>"
             ],
             "js": [
-                "slinky.js"
+                "content/content.js"
             ],
             "css": [
                 "slinky.css"
