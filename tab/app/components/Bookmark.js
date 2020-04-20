@@ -21,25 +21,23 @@ export class Bookmark extends Component{
     }
 
     render(){
-        const { bId, title, tags, openBookmark, disableLinkOpen } = this.props.bookmark //Destructuring 
+        const { bId, title, tags, url } = this.props.bookmark //Destructuring 
         return(
             <div>
                 <div className="bookmark">
-                    <div className="image-box" onClick={openBookmark}>
+                    <div className="image-box" onClick={this.props.openBookmark.bind(this, url)}>
                         <img src={this.favicon()}></img>
                     </div>
-                    <div className="content-box" onClick={openBookmark}>
+                    <div className="content-box" onClick={this.props.openBookmark.bind(this, url)}>
                         <h3>{title}</h3>
                         {tags.map((tag) => <span key={tag}> {"#" + tag + " "}</span>)}
                     </div>
-                    <div className="options-box" onClick={ e => {e.preventDefault(); disableLinkOpen}}>
+                    <div className="options-box">
                         <img src={trashIcon} type="button" 
                         onClick={this.props.deleteBookmark.bind(this, bId)}/>
                     </div>
                 </div>
-
             </div>
-
         )
     }
 }

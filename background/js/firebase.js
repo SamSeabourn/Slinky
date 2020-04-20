@@ -1,7 +1,7 @@
 
 var currentUser = new User;
 var bookmarkDB;
-var usersBookmarks = [];
+let usersBookmarks = [];
 
 firebase.initializeApp(firebaseConfig);
 
@@ -90,6 +90,31 @@ function getKeyFromUrl(url){
     })
     return key;
 }
+
+function sendUserBookmarksToContent(){
+        console.log("sending users bookmarks")
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+            chrome.tabs.sendMessage(tabs[0].id, { data: usersBookmarks }, function(response) {
+                console.log(response)
+                console.log(response)
+            });  
+        });
+    }
+
+
+
+chrome.runtime.onMessageExternal.addListener(
+    function(request, sender, sendResponse) {
+      console.log(request.request)
+      if (request.message === "getAllbookmarks"){
+        sendResponse({data: usersBookmarks})
+        // sendUserBookmarksToContent()
+      }
+      else {
+        sendResponse({message: "wrong request G"})
+      } 
+    });
+
 
 
 
