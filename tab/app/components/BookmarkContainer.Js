@@ -30,6 +30,9 @@ export class BookmarkContainer extends Component{
             return bookmark;
             })
         })
+        console.log('hello there, Im the delete function')
+        // console.log(firebaseConfig)
+
     }
 
     updateSearchTerms = (e) =>{
