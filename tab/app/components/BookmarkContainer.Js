@@ -1,12 +1,14 @@
+
 import React, { Component } from 'react';
 import Bookmark from './Bookmark';
 import SearchBar from './SearchBar';
 import "regenerator-runtime/runtime";
 
-var userBookmarks;
+
 
 export class BookmarkContainer extends Component {
     _isMounted = false;
+
     constructor() {
         super();
         this.state = {
@@ -15,15 +17,20 @@ export class BookmarkContainer extends Component {
             ],
             currentSearch: []
         };
+
     }
 
     componentDidMount() {
         this._isMounted = true;
-        this.bookmarkService("getAllbookmarks", null)
+        this.pollBookmarks()
+
+        console.log(this)    
     }
+    
 
     deleteBookmark = (bId) => {
         this.bookmarkService("deleteBookmark", bId)
+        // this.bookmarkService("getAllbookmarks", null)
     }
 
     updateSearchTerms = (e) => {
@@ -37,24 +44,32 @@ export class BookmarkContainer extends Component {
     }
 
     bookmarkService = (task, bookmarkId) => {
-        let fetchBookmarks = new Promise(function (resolve, reject) {
-            var data
             chrome.runtime.sendMessage("eniajemgofmchohalpnjoodmpbkgegna", { task: task, bId: bookmarkId }, function (response) {
-                data = response.data
+                console.log(response)
             })
-            setTimeout(function () { resolve(data) }, 10); // This is janky, need to look into async in chrome runtime messages
-        })
-        fetchBookmarks.then((data) => {
-            if (this._isMounted) {
-                console.log(data)
-                this.setState({ bookmarks: data })
-            }
-        })
+    }
+
+    pollBookmarks = () => { //Cant add listener on the tab with chrome extensions 
+        setInterval(() => {
+            let fetchBookmarks = new Promise(function (resolve, reject) {
+                var data
+                chrome.runtime.sendMessage("eniajemgofmchohalpnjoodmpbkgegna", { task: "getAllbookmarks" }, function (response) {
+                    data = response.data
+                    resolve(data)
+                })
+            })
+            fetchBookmarks.then((data) => {
+                if (this._isMounted) {
+                    this.setState({ bookmarks: data })
+                }
+            })
+          }, 1000);
     }
 
     componentWillUnmount() {
         this._isMounted = false;
     }
+
 
     render() {
         return (
@@ -82,5 +97,17 @@ export class BookmarkContainer extends Component {
         )
     }
 }
+
+// chrome.runtime.addListener(
+//     function(request, sender, sendResponse) {
+//       console.log(sender.tab ?
+//                   "from a content script:" + sender.tab.url :
+//                   "from the extension");
+//       if (request.greeting == "hello")
+//         sendResponse({farewell: "goodbye"});
+//     });
+
+console.log(chrome.runtime.onMessage)
+
 
 export default BookmarkContainer

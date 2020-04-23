@@ -49,7 +49,7 @@
         "scripts": [
         ],
         "page": "background/background.html",
-        "persistent": true
+        "persistent": false
     },
     "permissions": [
         "activeTab",

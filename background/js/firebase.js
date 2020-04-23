@@ -40,7 +40,7 @@ function initalizeFirebaseUpdateListener() {
         var keys = Object.keys(bookmarks)
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i]
-            if (!bookmarks[k].isDeleted && ) {
+            if (!bookmarks[k].isDeleted) {
 
                 var bookmark = new Bookmark(
                     bookmarks[k].url,
@@ -55,9 +55,6 @@ function initalizeFirebaseUpdateListener() {
                 console.log(bookmarks[k].title + " is deleted")
             }
         }
-        // chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-        //     console.log(response.farewell);
-        // });
     }
 
     function errData(data) {
@@ -92,18 +89,23 @@ function getKeyFromUrl(url) {
 
 //Chrome runtime messaging
 
-// function sendUserBookmarksToContent(){
-//     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-//         chrome.tabs.sendMessage(tabs[0].id, { data: usersBookmarks }, function(response) {
-//             console.log(response)
-//             console.log(response)
-//         });  
-//     });
-// }
+function sendUserBookmarksToContent(){
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
+          console.log(response.farewell);
+        });
+      });
+}
 
 function deleteBookmark(bId) {
     firebase.database().ref(`/users/${currentUser.uId}/bookmarks/${bId}`).update({ isDeleted: true });
 }
+
+chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
+      console.log(response.farewell);
+    });
+  });
 
 //Waiting for data from the popup.js
 chrome.runtime.onMessage.addListener(
