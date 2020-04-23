@@ -22,15 +22,13 @@ export class BookmarkContainer extends Component {
 
     componentDidMount() {
         this._isMounted = true;
+        this.bookmarkService("getAllbookmarks", null)
         this.pollBookmarks()
-
-        console.log(this)    
     }
     
 
     deleteBookmark = (bId) => {
         this.bookmarkService("deleteBookmark", bId)
-        // this.bookmarkService("getAllbookmarks", null)
     }
 
     updateSearchTerms = (e) => {
@@ -44,12 +42,23 @@ export class BookmarkContainer extends Component {
     }
 
     bookmarkService = (task, bookmarkId) => {
+        //Leaving this function in as here allows the state to update instantly and I can polling take longer
+        let fetchBookmarks = new Promise(function (resolve, reject) {
+            var data
             chrome.runtime.sendMessage("eniajemgofmchohalpnjoodmpbkgegna", { task: task, bId: bookmarkId }, function (response) {
-                console.log(response)
+                data = response.data
+                resolve(data)
             })
+        })
+        fetchBookmarks.then((data) => {
+            if (this._isMounted) {
+                this.setState({ bookmarks: data })
+            }
+        })
     }
 
-    pollBookmarks = () => { //Cant add listener on the tab with chrome extensions 
+    pollBookmarks = () => { 
+        //Cant add listener on the chrome ext tab with chrome extensions so need to poll
         setInterval(() => {
             let fetchBookmarks = new Promise(function (resolve, reject) {
                 var data
@@ -63,7 +72,7 @@ export class BookmarkContainer extends Component {
                     this.setState({ bookmarks: data })
                 }
             })
-          }, 1000);
+          }, 3000);
     }
 
     componentWillUnmount() {

@@ -4,11 +4,11 @@
 
 // let slinkyViewerIsOpen = false;
 
-// chrome.commands.onCommand.addListener(function(command) {
-//     if (command === "open-slinky" && !slinkyViewerIsOpen) {
-//         chrome.tabs.create({url:"app/slinky-viewer/public/index.html"});
-//         slinkyViewerIsOpen = true;
-//     } else {
-//         //TODO Close window 
-//     }
-// });
+chrome.commands.onCommand.addListener(function(command) {
+    if (command === "open-slinky" && !slinkyViewerIsOpen) {
+        chrome.tabs.create({url:"app/slinky-viewer/public/index.html"});
+        slinkyViewerIsOpen = true;
+    } else {
+        //TODO Close window 
+    }
+});

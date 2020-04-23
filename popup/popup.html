@@ -7,7 +7,36 @@
     <link rel="stylesheet" type="text/css" href="style/popup.css">
   </head>
   <body>
-    <div id='slinkyBox'>
+
+    <div class="slinky-nav-box">
+        <img src="../icons/slinky-color-horizontal-vector-text.svg">
+    </div>
+
+    <div class="slinky-content-box ">
+      <div class="slinky-upload-complete hidden">
+        <h1> Boom! link has been saved </h1>
+        <h4> press <span class="short-cut-keys">ESC</span> to close  </h4>
+        <h4 id="shortcut-message"> </h4>
+      </div>
+      <div class="slinky-bookmark show fade-out">
+        <div class="slinky-favicon-box">
+          <img id="currentWebsiteImageElement">
+        </div>
+        <div class="slinky-title-box">
+          <input type="text" id="currentWebsiteTitleElement">
+        </div>
+        <div class="slinky-url-box ">
+          <input type="text" id="currentWebsiteUrlElement" value="www.testwebsite.com" readonly>
+        </div>
+      </div>
+      <div class="slinky-input-area show fade-out">
+        <input id='tagInputElement' placeholder="Enter your tags here with spacebars between" type="text" autofocus >
+      </div>
+      <div class="slinky-tags-container show fade-out" id='tagContainerElement'></div>
+    </div>
+
+
+    <!-- <div id='slinkyBox'>
       <div>
         <h1>Slinky</h1>
         <img id='currentWebsiteImageElement'>
@@ -30,6 +59,7 @@
     <div id='loaderDiv' class="hidden">
       <img src="../icons/loading-cycle.gif" alt="Slinky Loading">
     </div>
+    -->
     
 
   </body>

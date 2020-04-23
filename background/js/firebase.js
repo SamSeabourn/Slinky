@@ -87,7 +87,6 @@ function getKeyFromUrl(url) {
     return key;
 }
 
-//Chrome runtime messaging
 
 function sendUserBookmarksToContent(){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
@@ -101,11 +100,6 @@ function deleteBookmark(bId) {
     firebase.database().ref(`/users/${currentUser.uId}/bookmarks/${bId}`).update({ isDeleted: true });
 }
 
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-      console.log(response.farewell);
-    });
-  });
 
 //Waiting for data from the popup.js
 chrome.runtime.onMessage.addListener(
@@ -115,7 +109,7 @@ chrome.runtime.onMessage.addListener(
         sendResponse({ message: "Sending data to DB" });
     });
 
-//Waiting for requests from the JS   
+//Waiting for requests from the Tabs  
 chrome.runtime.onMessageExternal.addListener(
     function (task, sender, sendResponse) {
         switch (task.task) {
@@ -124,7 +118,7 @@ chrome.runtime.onMessageExternal.addListener(
                 break;
             case "deleteBookmark":
                 deleteBookmark(task.bId)
-                sendResponse({ data: usersBookmarks })
+                sendResponse({ data: usersBookmarks }) // updates the state instantly instead of waiting for polling service
             default:
                 sendResponse({ data: "BAD REQUEST BRAH" })
         }
