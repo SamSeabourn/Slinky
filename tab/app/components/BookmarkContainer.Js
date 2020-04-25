@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import Bookmark from './Bookmark';
 import SearchBar from './SearchBar';
@@ -33,7 +32,6 @@ export class BookmarkContainer extends Component {
 
     updateSearchTerms = (e) => {
         this.setState({ currentSearch: e.target.value.toLowerCase().trim().split(" ") })
-        console.log(this.state.currentSearch)
     }
 
     openBookmark = (url) => {
@@ -106,15 +104,6 @@ export class BookmarkContainer extends Component {
         )
     }
 }
-
-// chrome.runtime.addListener(
-//     function(request, sender, sendResponse) {
-//       console.log(sender.tab ?
-//                   "from a content script:" + sender.tab.url :
-//                   "from the extension");
-//       if (request.greeting == "hello")
-//         sendResponse({farewell: "goodbye"});
-//     });
 
 console.log(chrome.runtime.onMessage)
 

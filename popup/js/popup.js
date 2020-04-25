@@ -5,19 +5,19 @@ let currentWebsiteTitleElement;
 let currentWebsiteImageElement;
 let currentWebsite = new Bookmark();
 let chromeCommands;
-let shortcutMessage;
+let shortcutMessage1;
 
 chrome.commands.getAll(function(commands){
   chromeCommands = commands
 })
-
 document.addEventListener('DOMContentLoaded', function () {
   currentWebsiteTitleElement = document.getElementById('currentWebsiteTitleElement');
   currentWebsiteUrlElement = document.getElementById('currentWebsiteUrlElement');
   tagInputElement = document.getElementById('tagInputElement');
   tagContainerElement = document.getElementById('tagContainerElement');
   currentWebsiteImageElement = document.getElementById('currentWebsiteImageElement');
-  shortcutMessage = document.getElementById('shortcutMessage');
+  shortcutMessage1 = document.getElementById('shortcutMessage1');
+  shortcutMessage2= document.getElementById('shortcutMessage2');
 
   chrome.tabs.getSelected(null, function (tab) {
     if (tab.url !== undefined || tab.url !== null) {
@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 }, false);
 
-
 window.addEventListener("keydown", function(e) {
   if (e.key === " " && tagInputElement.value != " ") updateTags(currentWebsite.tags);
   if (e.key === "Enter") {
@@ -49,7 +48,6 @@ window.addEventListener("keydown", function(e) {
     showUploadCompleteMessage();
   }
 }, true);
-
 
 function updatePopup() {
   currentWebsiteUrlElement.value = currentWebsite.url;
@@ -86,14 +84,13 @@ function updateTitle() {
   currentWebsite.title = currentWebsiteTitleElement.value
 }
 
-
 function sendWebsiteToFirebase() {
   chrome.runtime.sendMessage(currentWebsite, function (response) {
   });
 }
 
 function showUploadCompleteMessage() {
-  shortcutMessage.innerHTML = createShortcutString();
+  shortcutMessage1.innerHTML = createShortcutString("Press","to open your links", 1);
   var uploadCompleteDiv = document.getElementsByClassName('slinky-upload-complete')[0];
   var shownDivs = document.getElementsByClassName('fade-out')
   for (let i = 0; i < shownDivs.length; i++) {
@@ -139,16 +136,16 @@ function inputScroller(inputElement, maxCharacterCount) {
   }
 }
 
-function createShortcutString(){
-  const openSlinkyKeys = chromeCommands[1].shortcut.split("+")
-  let resultString = "Press ";
+function createShortcutString(startOfMessage, endOfMessage, commandNumber){
+  const openSlinkyKeys = chromeCommands[commandNumber].shortcut.split("+")
+  let resultString = startOfMessage + " ";
   for (let i = 0; i < openSlinkyKeys.length; i++) {
     resultString = resultString + `<span class="short-cut-keys">${ openSlinkyKeys[i] }</span>`
     if (i < openSlinkyKeys.length){
       resultString = resultString + "+"
     }
   }
-  resultString = resultString + " to open your links"
+  resultString = resultString + " " + endOfMessage
   return resultString
 }
 

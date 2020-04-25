@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types' 
 import missingImageIcon from '../../../icons/broken-image.svg'
 import trashIcon from '../../../icons/trash-can.svg'
-
+import BookmarkInput from './BookmarkInput.js'
 
 
  // { this.props.bookmark.title}
@@ -29,7 +29,7 @@ export class Bookmark extends Component{
                         <img src={this.favicon()}></img>
                     </div>
                     <div className="content-box" onClick={this.props.openBookmark.bind(this, url)}>
-                        <h3>{title}</h3>
+                        <BookmarkInput value={title} bId={bId}/>
                         {tags.map((tag) => <span key={tag}> {"#" + tag + " "}</span>)}
                     </div>
                     <div className="options-box">
@@ -41,6 +41,8 @@ export class Bookmark extends Component{
         )
     }
 }
+
+// <input className ="titleInput" readOnly value={title}/>
 
 
 

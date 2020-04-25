@@ -66,6 +66,7 @@ body {
     height: 60px;
     border-radius: 50px;
     background: white;
+    
 }
 
 .search-area .bookmark:hover {
@@ -73,6 +74,12 @@ body {
     background: linear-gradient(240deg, rgba(41,171,226,1) 0%, rgba(255,123,172,1) 100%);
     box-shadow: 0px 0px 7px 3px rgba(0,0,0,0.15);
     color: #fff;
+    cursor: pointer;
+}
+
+.search-area .bookmark:hover .content-box input {
+    color: #fff;
+    cursor: pointer;
 }
 
 .search-area .bookmark .image-box {
@@ -90,9 +97,9 @@ body {
     overflow: hidden;
 }
 
-.search-area .bookmark .content-box {
+/* .search-area .bookmark .content-box {
     width: 100%;
-}
+} */
 
 .search-area .bookmark .options-box {
     height: 60px;
@@ -101,14 +108,15 @@ body {
     max-width: 60px;
 }
 
-.search-area .bookmark .content-box h3 {
+.search-area .bookmark .content-box input {
+    font-size: 26px;
     margin: 0;
     margin-top: 4px;
-    display: block;
+    /* display: block; */
     max-height: 27px;
     max-width: 23vw;
-    white-space:nowrap;
-    overflow: hidden;
+    /* white-space:nowrap;
+    overflow: hidden; */
 }
 
 .search-area .bookmark .options-box img {
