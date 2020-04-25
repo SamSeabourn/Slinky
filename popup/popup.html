@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>Slinky: Bulk Bookmarking</title>
-    <script src="../classList.js"></script>
-    <script src="js/popup.js"></script>
+    <script src="../classList.js" type="text/javascript"></script>
+    <script src="js/popup.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="style/popup.css">
   </head>
   <body>
@@ -15,8 +15,8 @@
     <div class="slinky-content-box ">
       <div class="slinky-upload-complete hidden">
         <h1> Boom! link has been saved </h1>
-        <h4> press <span class="short-cut-keys">ESC</span> to close  </h4>
-        <h4 id="shortcut-message"> </h4>
+        <h3> press <span class="short-cut-keys">ESC</span> to close  </h3>
+        <h3 id="shortcutMessage"> </h3>
       </div>
       <div class="slinky-bookmark show fade-out">
         <div class="slinky-favicon-box">
@@ -32,7 +32,11 @@
       <div class="slinky-input-area show fade-out">
         <input id='tagInputElement' placeholder="Enter your tags here with spacebars between" type="text" autofocus >
       </div>
-      <div class="slinky-tags-container show fade-out" id='tagContainerElement'></div>
+      <div class="slinky-tags-container show fade-out" id='tagContainerElement'>
+      </div>
+      <div id="slinky-delete-tip" class="slinky-delete-tip hide fade-out">
+        <h7>click tags to delete<h7>
+      </div>
     </div>
 
 
