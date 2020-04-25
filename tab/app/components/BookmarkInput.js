@@ -1,26 +1,18 @@
 import React, { Component } from 'react';
 
-
-
 export class BookmarkInput extends Component {
-
     state = {
         previousScrollPosition: -1,
         currentPossition: 0,
         maxPosition: 0
     }
-
     characterCount = 0;
     increment = 1;
-    speed = 0;
     scrollRight = true
     scrollLeft = false
-    previousScrollPosition = -1
-    inputScroller = (inputElement, maxCharacterCount) => {
+    inputScroller = (inputElement) => {
         this.characterCount = inputElement.value.length;
-        this.speed = (this.characterCount > (maxCharacterCount + 5) ? 40 : 100)
         this.characterCount = inputElement.value.length;
-        if (this.characterCount > maxCharacterCount) {
             setInterval(() => {
                 if (this.state.maxPosition >= this.state.previousScrollPosition || inputElement.scrollLeft === 0) {
                     if (this.scrollRight) {
@@ -42,14 +34,9 @@ export class BookmarkInput extends Component {
                     this.setState({ currentPossition: this.state.currentPossition - this.increment })
                     inputElement.scrollLeft = this.state.currentPossition
                 }
-            }, 20)
-        }
+            }, 55)
+        // }
     }
-
-
-
-
-
 
     waitTime = (ms) => {
         this.increment = 0
@@ -59,12 +46,12 @@ export class BookmarkInput extends Component {
     }
 
     componentDidMount() {
-        this.inputScroller( document.getElementsByClassName(this.props.bId)[0], 1)
+        this.inputScroller( document.getElementsByClassName(this.props.bId)[0])
     }
 
 
     render() {
-        var className = `titleInput ${this.props.bId}`
+        var className = `${this.props.inputClass} ${this.props.bId}`
         return (
             <input className={className} readOnly value={this.props.value} />
         )

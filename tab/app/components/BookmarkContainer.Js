@@ -11,9 +11,8 @@ export class BookmarkContainer extends Component {
     constructor() {
         super();
         this.state = {
-            bookmarks: [
-
-            ],
+            bookmarks: [],
+            searchResults: [],
             currentSearch: []
         };
 
@@ -25,13 +24,13 @@ export class BookmarkContainer extends Component {
         this.pollBookmarks()
     }
     
-
     deleteBookmark = (bId) => {
         this.bookmarkService("deleteBookmark", bId)
     }
 
     updateSearchTerms = (e) => {
         this.setState({ currentSearch: e.target.value.toLowerCase().trim().split(" ") })
+        this.filterBookmarks(this.state.bookmarks, this.state.currentSearch)
     }
 
     openBookmark = (url) => {
@@ -77,6 +76,18 @@ export class BookmarkContainer extends Component {
         this._isMounted = false;
     }
 
+    filterBookmarks = (allBookmarks, searchTerms) => {
+        var results = []
+        for (let i = 0; i < allBookmarks.length; i++) {
+            var bookmark = allBookmarks[i]
+            for (let f = 0; f < searchTerms.length; f++) {
+                if (bookmark.tags.includes(searchTerms[f])) {
+                    results.push(bookmark)
+                }
+            }
+        }
+        this.setState({ searchResults: results})  
+    }
 
     render() {
         return (

@@ -77,6 +77,10 @@ body {
     cursor: pointer;
 }
 
+.search-area .bookmark .content-box {
+    width: 100%;
+}
+
 .search-area .bookmark:hover .content-box input {
     color: #fff;
     cursor: pointer;
@@ -97,9 +101,6 @@ body {
     overflow: hidden;
 }
 
-/* .search-area .bookmark .content-box {
-    width: 100%;
-} */
 
 .search-area .bookmark .options-box {
     height: 60px;
@@ -108,15 +109,20 @@ body {
     max-width: 60px;
 }
 
-.search-area .bookmark .content-box input {
+.search-area .bookmark .content-box .titleInput {
     font-size: 26px;
     margin: 0;
     margin-top: 4px;
-    /* display: block; */
     max-height: 27px;
-    max-width: 23vw;
-    /* white-space:nowrap;
-    overflow: hidden; */
+    width: 100%;
+
+}
+
+.search-area .bookmark .content-box .tagsInput {
+    font-size: 20px;
+    margin: 0;
+    max-height: 27px;
+    width: 100%;
 }
 
 .search-area .bookmark .options-box img {

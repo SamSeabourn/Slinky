@@ -20,8 +20,12 @@ export class Bookmark extends Component{
         }
     }
 
+    buildTagString =() => {
+        return "#" + this.props.bookmark.tags.join(' #')
+    }
+
     render(){
-        const { bId, title, tags, url } = this.props.bookmark //Destructuring 
+        const { bId, title, url } = this.props.bookmark //Destructuring 
         return(
             <div>
                 <div className="bookmark">
@@ -29,8 +33,9 @@ export class Bookmark extends Component{
                         <img src={this.favicon()}></img>
                     </div>
                     <div className="content-box" onClick={this.props.openBookmark.bind(this, url)}>
-                        <BookmarkInput value={title} bId={bId}/>
-                        {tags.map((tag) => <span key={tag}> {"#" + tag + " "}</span>)}
+                        <BookmarkInput value={ title } bId={ bId } inputClass="titleInput"/>
+                        <BookmarkInput value={ this.buildTagString() } bId={ bId + "tags" }inputClass="tagsInput"/>
+                        
                     </div>
                     <div className="options-box">
                         <img src={trashIcon} type="button" 
@@ -43,7 +48,7 @@ export class Bookmark extends Component{
 }
 
 // <input className ="titleInput" readOnly value={title}/>
-
+// {tags.map((tag) => <span key={tag}> {"#" + tag + " "}</span>)}
 
 
 Bookmark.propTypes = {
