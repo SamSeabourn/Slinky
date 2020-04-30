@@ -37,7 +37,7 @@ export class BookmarkInput extends Component {
                     this.setState({ currentPossition: this.state.currentPossition - this.increment })
                     inputElement.scrollLeft = this.state.currentPossition
                 }
-            }, 16.)
+            }, 16)
     }
 
     waitTime = (ms) => {

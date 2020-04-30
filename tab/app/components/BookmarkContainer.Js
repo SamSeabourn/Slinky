@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Bookmark from './Bookmark';
 import SearchBar from './SearchBar';
 import "regenerator-runtime/runtime";
+import Fuse from 'fuse.js'
+
+console.log(Fuse)
 
 
 export class BookmarkContainer extends Component {
@@ -81,42 +84,22 @@ export class BookmarkContainer extends Component {
     }
 
     filterBookmarks = (allBookmarks, searchTerms) => {
-        var filteredBookmarkList = []
-        filteredBookmarkList = allBookmarks
-        for (let i = 0; i < filteredBookmarkList.length; i++) {
-            var currentBookmark = filteredBookmarkList[i]
 
-            var matches = 0
-            var nonMatches = 0
+        var options = { includeScore: true, keys: ['tags'] }
+        var results = []
 
-            for (let j = 0; j < currentBookmark.tags.length; j++) {
-                var currentTag = currentBookmark.tags[j]
+        for (let i = 0; i < searchTerms.length; i++) {
 
-                for (let k = 0; k < searchTerms.length; k++) {
-                    var currentSearchTerm = searchTerms[k]
-                    if(currentTag.includes(currentSearchTerm)){
-                        matches++
-                    } else {
-                        nonMatches++
-                    }
-                }
-                // console.log(currentBookmark)
-                // console.log("matches " + matches)
-                // console.log("non matches " + nonMatches)
-            } 
-
-            if (matches > 1 ) {
-               var searchResults = this.state.searchResults
-               searchResults.push(currentBookmark)
-                this.setState({ searchResults: searchResults})
-            }
-            console.log()
-
+            const fuse = new Fuse(allBookmarks, options)
+            
+            var fuseResults = fuse.search(searchTerms[i])
+            fuseResults.forEach(element => { 
+                results.push(element.item)
+            });;
         }
-        // if theres a match its marked as true bookmark gets added to filtered results
-
-        //
- 
+        
+        this.setState({ searchResults: results })
+        console.log(this.state.searchResults)
     }
     
     render() {
