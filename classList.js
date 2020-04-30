@@ -5,9 +5,9 @@ class Bookmark {
     this.url = url;
     this.favicon = favicon;
     this.tags = tags;
-    this.clicks = clicks
+    this.clicks = clicks;
+    this.isInSearch = isInSearch;
     this.isDeleted = isDeleted;
-    this.isInSearch = isInSearch
   }
 }
 

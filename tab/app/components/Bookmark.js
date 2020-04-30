@@ -20,26 +20,27 @@ export class Bookmark extends Component{
         }
     }
 
-    buildTagString =() => {
+    buildTagString = () => {
         return "#" + this.props.bookmark.tags.join(' #')
     }
 
     render(){
-        const { bId, title, url } = this.props.bookmark //Destructuring 
+        const { bId, title, url, isInSearch } = this.props.bookmark //Destructuring 
+        var bookmarkHidden = isInSearch? "displayed-bookmark" : "hidden-bookmark";
         return(
-            <div>
+            <div className={ bookmarkHidden }>
                 <div className="bookmark">
-                    <div className="image-box" onClick={this.props.openBookmark.bind(this, url)}>
+                    <div className="image-box" onClick={ this.props.openBookmark.bind(this, url) }>
                         <img src={this.favicon()}></img>
                     </div>
-                    <div className="content-box" onClick={this.props.openBookmark.bind(this, url)}>
+                    <div className="content-box" onClick={ this.props.openBookmark.bind(this, url) }>
                         <BookmarkInput value={ title } bId={ bId } inputClass="titleInput"/>
                         <BookmarkInput value={ this.buildTagString() } bId={ bId + "tags" }inputClass="tagsInput"/>
                         
                     </div>
                     <div className="options-box">
-                        <img src={trashIcon} type="button" 
-                        onClick={this.props.deleteBookmark.bind(this, bId)}/>
+                        <img src={ trashIcon } type="button" 
+                        onClick={ this.props.deleteBookmark.bind(this, bId) }/>
                     </div>
                 </div>
             </div>

@@ -48,6 +48,7 @@ function initalizeFirebaseUpdateListener() {
                     bookmarks[k].title,
                     bookmarks[k].tags,
                     bookmarks[k].clicks,
+                    // bookmarks[k].isInSearch,
                 )
                 bookmark.bId = k
                 usersBookmarks.push(bookmark)
@@ -87,7 +88,6 @@ function getKeyFromUrl(url) {
     return key;
 }
 
-
 function sendUserBookmarksToContent(){
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
@@ -97,9 +97,13 @@ function sendUserBookmarksToContent(){
 }
 
 function deleteBookmark(bId) {
-    firebase.database().ref(`/users/${currentUser.uId}/bookmarks/${bId}`).update({ isDeleted: true });
+        firebase.database().ref(`/users/${currentUser.uId}/bookmarks/${bId}`).update({ isDeleted: true });
+        firebase.database().ref(`${bookmarkDB}/${bId}`).update({ isDeleted: true})
 }
 
+function setBookmarkInSearch(bId, isInSearch){
+    firebase.database().ref(`${bookmarkDB}/${bId}`).update({ isInSearch: isInSearch})
+}
 
 //Waiting for data from the popup.js
 chrome.runtime.onMessage.addListener(
@@ -118,9 +122,17 @@ chrome.runtime.onMessageExternal.addListener(
                 break;
             case "deleteBookmark":
                 deleteBookmark(task.bId)
-                sendResponse({ data: usersBookmarks }) // updates the state instantly instead of waiting for polling service
+                break;
+            case "IsInsearch":
+                setBookmarkInSearch(task.bId, true)
+                break;
+            case "IsntInSearch":
+                setBookmarkInSearch(task.bId, false)
+                break;
+                // sendResponse({ data: usersBookmarks }) // updates the state instantly instead of waiting for polling service
             default:
                 sendResponse({ data: "BAD REQUEST BRAH" })
+                break;
         }
     });
 

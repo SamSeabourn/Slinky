@@ -19,7 +19,7 @@ body {
 }
 
 .sidebar {
-    max-width: 75px;
+    width: 75px;
     background: rgb(41,171,226);
     background: linear-gradient(0deg, rgba(41,171,226,1) 0%, rgba(255,123,172,1) 100%);
 }
@@ -66,7 +66,14 @@ body {
     height: 60px;
     border-radius: 50px;
     background: white;
-    
+}
+
+.search-area .displayed-bookmark{
+    display: block;
+}
+
+.search-area .hidden-bookmark{
+    display: none;
 }
 
 .search-area .bookmark:hover {
@@ -112,10 +119,9 @@ body {
 .search-area .bookmark .content-box .titleInput {
     font-size: 26px;
     margin: 0;
-    margin-top: 4px;
-    max-height: 27px;
+    margin-top: 3px;
+    max-height: 29px;
     width: 100%;
-
 }
 
 .search-area .bookmark .content-box .tagsInput {
@@ -143,5 +149,7 @@ body {
     font-style: italic;
     font-weight: 100;
   }
+
+
 
 
