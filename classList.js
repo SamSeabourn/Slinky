@@ -9,7 +9,7 @@ class Bookmark {
     this.isInSearch = isInSearch;
     this.isDeleted = isDeleted;
   }
-}
+};
 
 class User {
   constructor(uId, refreshToken, isAnonymous) {
@@ -17,4 +17,4 @@ class User {
     this.refreshToken = refreshToken;
     this.isAnonymous = isAnonymous;
   }
-}
+};

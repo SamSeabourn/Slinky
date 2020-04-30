@@ -10,7 +10,7 @@ export class Bookmark extends Component{
 
     marqueeCheck = (string) => {
         return string.length > 50
-       }
+    }
 
     favicon = () => {
         if (!this.props.bookmark.favicon.includes("http")) {

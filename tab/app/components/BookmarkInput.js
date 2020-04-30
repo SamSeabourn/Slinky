@@ -59,6 +59,4 @@ export class BookmarkInput extends Component {
     }
 }
 
-
-
 export default BookmarkInput

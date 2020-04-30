@@ -4,7 +4,6 @@ import SearchBar from './SearchBar';
 import "regenerator-runtime/runtime";
 
 
-
 export class BookmarkContainer extends Component {
     _isMounted = false;
 
@@ -18,7 +17,6 @@ export class BookmarkContainer extends Component {
 
     }
 
-
     componentDidMount() {
         this._isMounted = true;
         this.bookmarkService("getAllbookmarks", null)
@@ -27,13 +25,11 @@ export class BookmarkContainer extends Component {
     
     deleteBookmark = (bId) => {
         this.bookmarkService("deleteBookmark", bId)
-
     }
 
     updateSearchTerms = (e) => {
         this.setState({ currentSearch: e.target.value.toLowerCase().trim().split(" ") })
         this.filterBookmarks(this.state.bookmarks, this.state.currentSearch)
-        console.log(this.state.currentSearch)
     }
 
     openBookmark = (url) => {
@@ -77,7 +73,7 @@ export class BookmarkContainer extends Component {
                     this.setState({ bookmarks: data })
                 }
             })
-        }, 100000);
+        }, 5000);
     }
 
     componentWillUnmount() {
@@ -85,45 +81,42 @@ export class BookmarkContainer extends Component {
     }
 
     filterBookmarks = (allBookmarks, searchTerms) => {
-        // if (searchTerms.length > 1 || searchTerms[0] === "") {
-        //     // for (let i = 0; i < allBookmarks.length; i++) {
-        //         var bookmark = allBookmarks[0]
-        //         var matches;
-        //         for (let f = 0; f < searchTerms.length; f++) {
-        //             console.log(bookmark)
-        //             console.log(searchTerms[f])
-        //             var currentSearchTerm = searchTerms[f];
-        //             var newState;
+        var filteredBookmarkList = []
+        filteredBookmarkList = allBookmarks
+        for (let i = 0; i < filteredBookmarkList.length; i++) {
+            var currentBookmark = filteredBookmarkList[i]
 
-        //             for (let g = 0; g < bookmark.tags.length; g++) {
-        //                 if (bookmark.tags[g].includes(currentSearchTerm)) 
-        //                 {
-        //                     console.log("Match true")
-        //                     matches = true;
-        //                     bookmark.tags[g] = ""
-        //                     return
-        //                 } else {
-        //                     // newState = bookmark.isInSearch = false;
-        //                     console.log("Match false")
-        //                     matchesFalse++
-        //                     return
-        //                 }
-        //                 this.setState({ newState })
-        //             }    
-        //             console.log("there is a match: " + matches)
-        //         }
-            
+            var matches = 0
+            var nonMatches = 0
 
+            for (let j = 0; j < currentBookmark.tags.length; j++) {
+                var currentTag = currentBookmark.tags[j]
 
-                   
-            // }
-        // } else {
-        //     for (let i = 0; i < allBookmarks.length; i++) {
-        //         var bookmark = allBookmarks[i]
-        //         newState = bookmark.isInSearch = true;
-        //         this.setState({ newState })
-        //     }
+                for (let k = 0; k < searchTerms.length; k++) {
+                    var currentSearchTerm = searchTerms[k]
+                    if(currentTag.includes(currentSearchTerm)){
+                        matches++
+                    } else {
+                        nonMatches++
+                    }
+                }
+                // console.log(currentBookmark)
+                // console.log("matches " + matches)
+                // console.log("non matches " + nonMatches)
+            } 
+
+            if (matches > 1 ) {
+               var searchResults = this.state.searchResults
+               searchResults.push(currentBookmark)
+                this.setState({ searchResults: searchResults})
+            }
+            console.log()
+
         }
+        // if theres a match its marked as true bookmark gets added to filtered results
+
+        //
+ 
     }
     
     render() {
