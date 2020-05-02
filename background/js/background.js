@@ -8,14 +8,7 @@ chrome.commands.onCommand.addListener(function(command) {
         chrome.tabs.create({url:"../../tab/app/index.html"});
         var x = chrome.commands.getAll()
         slinkyViewerIsOpen = true;
-        console.log(x)
     } else {
         //TODO Close window 
     }
 });
-
-
-
-chrome.commands.getAll(function(commands){
-    console.log(commands)
-  })
