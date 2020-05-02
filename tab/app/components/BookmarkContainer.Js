@@ -14,7 +14,6 @@ export class BookmarkContainer extends Component {
             searchResults: [],
             currentSearch: []
         };
-
     }
 
     componentDidMount() {
@@ -24,7 +23,7 @@ export class BookmarkContainer extends Component {
     }
     
     deleteBookmark = (bId) => {
-        this.bookmarkService("deleteBookmark", bId)
+        this.bookmarkService("deleteBookmark", bId);        
     }
 
     updateSearchTerms = (e) => {
@@ -33,16 +32,10 @@ export class BookmarkContainer extends Component {
     }
 
     openBookmark = (url) => {
-        console.log(url)
         window.open(url, "_blank")
     }
 
-    setInSearch = (bId, isInSearch) =>{
-        // if (isInSearch) this.bookmarkService("IsInsearch", bId )
-        // else this.bookmarkService("IsntInsearch", bId )
-    }
-
-    bookmarkService = (task, bookmarkId) => {
+    bookmarkService = (task, bookmarkId, expectingData) => {
         //Leaving this function in as here allows the state to update instantly and I can polling take longer
         let fetchBookmarks = new Promise(function (resolve, reject) {
             var data
@@ -73,7 +66,7 @@ export class BookmarkContainer extends Component {
                     this.setState({ bookmarks: data })
                 }
             })
-        }, 10000);
+        }, 5000);
     }
 
     componentWillUnmount() {

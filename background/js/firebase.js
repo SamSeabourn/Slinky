@@ -56,7 +56,7 @@ function initalizeFirebaseUpdateListener() {
             }
         }
     }
-    
+
     function errData(data) {
         console.error("Error")
         console.error(err)
@@ -96,12 +96,15 @@ function sendUserBookmarksToContent(){
 }
 
 function deleteBookmark(bId) {
-        firebase.database().ref(`/users/${currentUser.uId}/bookmarks/${bId}`).update({ isDeleted: true });
+        // firebase.database().ref(`/users/${currentUser.uId}/bookmarks/${bId}`).update({ isDeleted: true });
         firebase.database().ref(`${bookmarkDB}/${bId}`).update({ isDeleted: true})
 }
 
 function setBookmarkInSearch(bId, isInSearch){
-    firebase.database().ref(`${bookmarkDB}/${bId}`).update({ isInSearch: isInSearch})
+    for (let i = 0; i < usersBookmarks.length; i++) {
+       console.log(usersBookmarks[i])
+        
+    }
 }
 
 //Waiting for data from the popup.js
@@ -121,12 +124,15 @@ chrome.runtime.onMessageExternal.addListener(
                 break;
             case "deleteBookmark":
                 deleteBookmark(task.bId)
+                sendResponse({ data: usersBookmarks })
                 break;
             case "IsInsearch":
                 setBookmarkInSearch(task.bId, true)
+                sendResponse({ data: usersBookmarks })
                 break;
             case "IsntInSearch":
                 setBookmarkInSearch(task.bId, false)
+                sendResponse({ data: usersBookmarks })
                 break;
                 // sendResponse({ data: usersBookmarks }) // updates the state instantly instead of waiting for polling service
             default:

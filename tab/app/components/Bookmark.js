@@ -26,7 +26,11 @@ export class Bookmark extends Component{
 
     render(){
         const { bId, title, url, isInSearch } = this.props.bookmark //Destructuring 
+         
         var bookmarkHidden = isInSearch? "displayed-bookmark" : "hidden-bookmark";
+        if (isInSearch === undefined ){
+            bookmarkHidden = "displayed-bookmark"
+        }
         return(
             <div className={ bookmarkHidden }>
                 <div className="bookmark">
