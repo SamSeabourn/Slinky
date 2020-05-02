@@ -33,7 +33,6 @@ function updateBookmark(bookmarkId, updatedBookmark) {
 }
 
 function initalizeFirebaseUpdateListener() {
-    // Needs to rebuild the object from Firebase to cache
     function gotData(data) {
         usersBookmarks = [];
         var bookmarks = data.val()
@@ -57,7 +56,7 @@ function initalizeFirebaseUpdateListener() {
             }
         }
     }
-
+    
     function errData(data) {
         console.error("Error")
         console.error(err)

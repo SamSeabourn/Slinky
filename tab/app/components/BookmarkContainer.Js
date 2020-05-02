@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import Bookmark from './Bookmark';
 import SearchBar from './SearchBar';
 import "regenerator-runtime/runtime";
-import Fuse from 'fuse.js'
-
-console.log(Fuse)
 
 
 export class BookmarkContainer extends Component {
@@ -76,7 +73,7 @@ export class BookmarkContainer extends Component {
                     this.setState({ bookmarks: data })
                 }
             })
-        }, 5000);
+        }, 10000);
     }
 
     componentWillUnmount() {
@@ -84,22 +81,40 @@ export class BookmarkContainer extends Component {
     }
 
     filterBookmarks = (allBookmarks, searchTerms) => {
-
-        var options = { includeScore: true, keys: ['tags'] }
-        var results = []
-
-        for (let i = 0; i < searchTerms.length; i++) {
-
-            const fuse = new Fuse(allBookmarks, options)
-            
-            var fuseResults = fuse.search(searchTerms[i])
-            fuseResults.forEach(element => { 
-                results.push(element.item)
-            });;
+        var searchTermCount = searchTerms.length
+        var searchResults = []
+        var sortableBookmarks = []
+        for (let i = 0; i < allBookmarks.length; i++) {
+            let bookmark = allBookmarks[i]
+            let searchScore = 0 
+            for (let j = 0; j < bookmark.tags.length; j++) { 
+                let tag = bookmark.tags[j]
+                for (let k = 0; k < searchTerms.length; k++) {
+                    let searchTerm = searchTerms[k]
+                    if (tag.includes(searchTerm)){
+                        searchScore = searchScore + 1
+                    }                
+                }
+            }
+            sortableBookmarks.push([bookmark, searchScore])
         }
-        
-        this.setState({ searchResults: results })
-        console.log(this.state.searchResults)
+        sortableBookmarks.sort(function(a, b) {
+            return b[1] - a[1];
+        });
+        for (let i = 0; i < sortableBookmarks.length; i++) {
+            let bookmarkScore = sortableBookmarks[i][1]
+            let bookmark = sortableBookmarks[i][0]
+            if (bookmarkScore >= searchTermCount ){
+                bookmark.isInSearch = true
+                searchResults.push(bookmark)
+                this.bookmarkService("IsInsearch", bookmark.bId)
+            } else {
+                bookmark.isInSearch = false
+                searchResults.push(bookmark)
+                this.bookmarkService("IsntInSearch", bookmark.bId)
+            }
+        }
+        this.setState({ bookmark: searchResults})
     }
     
     render() {
