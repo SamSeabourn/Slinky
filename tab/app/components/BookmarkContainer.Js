@@ -23,12 +23,25 @@ export class BookmarkContainer extends Component {
     }
     
     deleteBookmark = (bId) => {
-        this.bookmarkService("deleteBookmark", bId);        
+        this.bookmarkService("deleteBookmark", bId);
+        var bookmarks = this.state.bookmarks 
+        var newState = []
+        for (let i = 0; i < bookmarks.length; i++) {
+            if (bookmarks[i].bId == bId){
+                bookmarks[i].isInSearch = false //Hides bookmark while delete takes place
+            }
+            newState.push(bookmarks[i])
+        }
+        this.setState({ bookmarks: newState})
+        this.bookmarkService("getAllbookmarks", null)
     }
 
     updateSearchTerms = (e) => {
-        this.setState({ currentSearch: e.target.value.toLowerCase().trim().split(" ") })
-        this.filterBookmarks(this.state.bookmarks, this.state.currentSearch)
+        var searchString = e.target.value
+        if (searchString.charAt(searchString.length - 1 ) === " ") { 
+            var currentSearch = searchString.toLowerCase().trim().split(" ")
+            this.filterBookmarks(this.state.bookmarks, currentSearch)
+        }
     }
 
     openBookmark = (url) => {
@@ -66,7 +79,7 @@ export class BookmarkContainer extends Component {
                     this.setState({ bookmarks: data })
                 }
             })
-        }, 5000);
+        }, 200000);
     }
 
     componentWillUnmount() {
@@ -75,20 +88,33 @@ export class BookmarkContainer extends Component {
 
     filterBookmarks = (allBookmarks, searchTerms) => {
         var searchTermCount = searchTerms.length
+
+
         var searchResults = []
         var sortableBookmarks = []
         for (let i = 0; i < allBookmarks.length; i++) {
             let bookmark = allBookmarks[i]
             let searchScore = 0 
+            //////////
+            // for (let i = 0; i < searchTerms.length; i++) {
+            //     if (bookmark.tags.includes(searchTerms[i])){
+            //         searchScore++
+            //     }
+                
+            // }
+            //////////
+
+
             for (let j = 0; j < bookmark.tags.length; j++) { 
                 let tag = bookmark.tags[j]
-                for (let k = 0; k < searchTerms.length; k++) {
-                    let searchTerm = searchTerms[k]
-                    if (tag.includes(searchTerm)){
-                        searchScore = searchScore + 1
-                    }                
-                }
+                // for (let k = 0; k < searchTerms.length; k++) {
+                //     let searchTerm = searchTerms[k]
+                //     if (tag.includes(searchTerm)){
+                //         searchScore = searchScore + 1
+                //     }                
+                // }
             }
+            ///////
             sortableBookmarks.push([bookmark, searchScore])
         }
         sortableBookmarks.sort(function(a, b) {
@@ -100,16 +126,16 @@ export class BookmarkContainer extends Component {
             if (bookmarkScore >= searchTermCount ){
                 bookmark.isInSearch = true
                 searchResults.push(bookmark)
-                this.bookmarkService("IsInsearch", bookmark.bId)
+                // this.bookmarkService("IsInsearch", bookmark.bId)
             } else {
                 bookmark.isInSearch = false
                 searchResults.push(bookmark)
-                this.bookmarkService("IsntInSearch", bookmark.bId)
+                // this.bookmarkService("IsntInSearch", bookmark.bId)
             }
         }
         this.setState({ bookmark: searchResults})
     }
-    
+    f
     render() {
         return (
             <div className="bookmarkcontainer-flexbox">

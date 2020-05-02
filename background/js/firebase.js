@@ -102,8 +102,9 @@ function deleteBookmark(bId) {
 
 function setBookmarkInSearch(bId, isInSearch){
     for (let i = 0; i < usersBookmarks.length; i++) {
-       console.log(usersBookmarks[i])
-        
+       if (usersBookmarks[i].bId === bId){
+        usersBookmarks[i].isInSearch === isInSearch
+       }
     }
 }
 

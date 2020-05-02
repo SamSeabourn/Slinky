@@ -53,12 +53,17 @@ body {
     margin-bottom: 50px;
 }
 
+
 .search-area .bookmark-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     grid-column-gap: 1%;
-    grid-row-gap: 10%;
+    grid-row-gap: 14px;
 }
+
+@media (min-width:961px)  { .search-area .bookmark-container {grid-template-columns: repeat(1 1fr); }}
+@media (min-width:1025px) { .search-area .bookmark-container {grid-template-columns: repeat(2, 1fr); }}
+@media (min-width:1281px) { .search-area .bookmark-container {grid-template-columns: repeat(3, 1fr); }}
 
 .search-area .bookmark {
     display: flex;
