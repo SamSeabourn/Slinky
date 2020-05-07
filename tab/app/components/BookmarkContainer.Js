@@ -132,7 +132,7 @@ export class BookmarkContainer extends Component {
 
     render() {
         return (
-            <div className="bookmarkcontainer-flexbox">
+            <div className="bookmarkcontainer">
                 <div className="search-area">
                     <SearchBar
                         updateSearchTerms={this.updateSearchTerms}
