@@ -85,13 +85,6 @@ function getKeyFromUrl(url) {
     return key;
 }
 
-// function sendUserBookmarksToContent(){
-//     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//         chrome.tabs.sendMessage(tabs[0].id, {greeting: "hello"}, function(response) {
-//         });
-//       });
-// }
-
 function deleteBookmark(bId) {
     firebase.database().ref(`/users/${currentUser.uId}/bookmarks/${bId}`).update({ isDeleted: true });
 }
