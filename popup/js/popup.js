@@ -10,6 +10,7 @@ let shortcutMessage1;
 chrome.commands.getAll(function(commands){
   chromeCommands = commands
 })
+
 document.addEventListener('DOMContentLoaded', function () {
   currentWebsiteTitleElement = document.getElementById('currentWebsiteTitleElement');
   currentWebsiteUrlElement = document.getElementById('currentWebsiteUrlElement');

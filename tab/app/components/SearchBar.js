@@ -7,7 +7,8 @@ export class SearchBar extends Component{
             <div>
                 <input type="text" 
                     onChange={this.props.updateSearchTerms}
-                    autoFocus
+                    autoFocus={true}
+                    placeholder={"Filter tags here"}
                     contentEditable="true"
                     >
                 </input>

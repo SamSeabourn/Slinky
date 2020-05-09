@@ -21,7 +21,7 @@ export class BookmarkInput extends Component {
     inputScroller = (input) => {
         var inputScroll;
         this.characterCount = input.value.length
-        input.addEventListener("mouseover",(input) =>{
+        input.addEventListener("mouseover",() =>{
             inputScroll = setInterval( scrollOnHover , 10);
         })
         input.addEventListener("mouseout",() =>{
