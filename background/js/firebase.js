@@ -177,7 +177,8 @@ chrome.runtime.onMessageExternal.addListener(
                 sendResponse({ data: usersBookmarks })
                 break;
         }
-    });
+});
+
 
 
 

@@ -41,9 +41,12 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 window.addEventListener("keydown", function(e) {
-  if (e.key === " " && tagInputElement.value != " ") updateTags(currentWebsite.tags);
-  if (e.key === "Enter") {
+  if (e.key === " " && tagInputElement.value != " ") {
     updateTags(currentWebsite.tags);
+  }
+  if (e.key === "Enter" && currentWebsite.tags.length > 0) {
+    updateTags(currentWebsite.tags);
+    showHideSlinkyTips("hide")
     updateTitle();
     sendWebsiteToFirebase();
     showUploadCompleteMessage();
@@ -79,6 +82,7 @@ function updateTags() {
   };
   tagInputElement.value = "";
   renderTags(currentWebsite.tags)
+  showHideSlinkyTips('show')
 }
 
 function updateTitle() {
@@ -91,7 +95,7 @@ function sendWebsiteToFirebase() {
 }
 
 function showUploadCompleteMessage() {
-  shortcutMessage1.innerHTML = createShortcutString("Press","to open your links", 1);
+  shortcutMessage1.innerHTML = createShortcutString("Press","to see your saved links", 1);
   var uploadCompleteDiv = document.getElementsByClassName('slinky-upload-complete')[0];
   var shownDivs = document.getElementsByClassName('fade-out')
   for (let i = 0; i < shownDivs.length; i++) {
@@ -101,6 +105,22 @@ function showUploadCompleteMessage() {
   uploadCompleteDiv.classList.remove('hidden')
   uploadCompleteDiv.classList.add('show')
 
+}
+
+function showHideSlinkyTips(display) {
+  var slinkyTipsDiv = document.getElementById('slinky-delete-tip')
+  switch(display){
+    case "show":
+      slinkyTipsDiv.classList.remove('hide')
+      slinkyTipsDiv.classList.add('show')
+      break;
+    case "hide":
+      slinkyTipsDiv.classList.remove('show')
+      slinkyTipsDiv.classList.add('hide')
+      break;
+    default:
+      console.log('Sort it out man')
+  }
 }
 
 function inputScroller(inputElement, maxCharacterCount) {
@@ -142,18 +162,10 @@ function createShortcutString(startOfMessage, endOfMessage, commandNumber){
   let resultString = startOfMessage + " ";
   for (let i = 0; i < openSlinkyKeys.length; i++) {
     resultString = resultString + `<span class="short-cut-keys">${ openSlinkyKeys[i] }</span>`
-    if (i < openSlinkyKeys.length){
+    if (i < openSlinkyKeys.length-1){
       resultString = resultString + "+"
     }
   }
   resultString = resultString + " " + endOfMessage
   return resultString
 }
-
-
-
-  
-
-
-
-

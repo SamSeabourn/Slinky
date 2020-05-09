@@ -109,7 +109,7 @@ input {
 }
 
 .slinky-content-box .slinky-input-area input {
-    width: 91%;
+    width: 91.5%;
     top: 189px;
     left: 19px;
     text-align: center;
@@ -118,7 +118,7 @@ input {
 
 .slinky-content-box .slinky-tags-container {
     position: relative;
-    width: 99%;
+    width: 91.5%;
     padding: 4%;
     top: 221px;
 }
@@ -150,9 +150,7 @@ input {
 .slinky-content-box .slinky-delete-tip {
     width: 100%;
     color: #fff;
-    position: absolute;
-    font-style: italic;
+    position: relative;
     text-align: center;
-    opacity: 70%;
     top: 219px;
 }
