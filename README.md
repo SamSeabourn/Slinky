@@ -1,5 +1,7 @@
 
-# Slinky - Bookmark pages with hotkeys and hashtags.
+# Slinky - Bookmark with hotkeys and hashtags.
+
+![](slinky-demo.gif)
 
 ### **About Slinky**
 
@@ -15,13 +17,13 @@ Google chrome extension tools
 
 ### **How does it work?**
 
-# To save a bookmark
+To save a bookmark
 - Install the chrome extension
 - Press ctr + b or cmd + b to bring up the slinky extension
 - Enter each tag you would like to add to the page (you can also edit the title of the site here too)
 - Press enter when complete
 
-# To view bookmarks
+To view bookmarks
 - Press ctr + v or cmd + v to bring up all your saved addresses
 - Use the search bar to filter through your bookmarks
 - Press tab until your bookmark is selected and press enter to open it.
