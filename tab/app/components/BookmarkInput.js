@@ -64,7 +64,7 @@ export class BookmarkInput extends Component {
     }
 
     render() {
-        var className = `${this.props.inputClass} ${this.props.bId}`
+        var className = `${this.props.inputClass} ${this.props.bId} unselectable`
         return (
             <input 
             className={className} 
