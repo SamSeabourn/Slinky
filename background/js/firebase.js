@@ -33,14 +33,13 @@ function updateBookmark(bookmarkId, updatedBookmark) {
 
 function initalizeFirebaseUpdateListener() {
     function gotData(data) {
-        if (data === null || data === undefined ) return 
+        if (data.val() === null || data.val() === undefined ) return 
         usersBookmarks = [];
         var bookmarks = data.val()
         var keys = Object.keys(bookmarks)
         for (var i = 0; i < keys.length; i++) {
             var k = keys[i]
             if (!bookmarks[k].isDeleted) {
-
                 var bookmark = new Bookmark(
                     bookmarks[k].url,
                     bookmarks[k].favicon,
@@ -71,7 +70,11 @@ function initalizeFirebaseUpdateListener() {
 function urlAlreadyExists(url) {
     let exists;
     bookmarkDB.orderByChild('url').equalTo(url).on("value", function (snapshot) {
-        exists = (snapshot.val() !== null || undefined)
+        if (snapshot.val() === null || snapshot.val() !== undefined) {
+            exists = false;
+        } else {
+            exists = true;
+        }
     })
     return exists;
 }
