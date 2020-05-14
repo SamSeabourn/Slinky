@@ -1,19 +1,21 @@
 
 # Slinky - Bookmark with hotkeys and hashtags.
 
-![](slinky-demo.gif)
-
 ### **About Slinky**
 
 The idea behind Slinky is to create a bookmarking system that utilizes hotkeys and hashtags. 
 This means you can save and manage links without rifling through folders.
 
-### **Features**
+![](slinky-demo.gif)
 
-React.js tab view with a custom webpack (no create-react-app) 
-Firebase with anonymous auth
-Vanilla JavaScript
-Google chrome extension tools
+### **Build With**
+
+-React.js tab view with a custom webpack (no create-react-app) 
+-Firebase with anonymous auth
+-Vanilla JavaScript
+-Vanilla CSS
+-Google chrome extension tools
+-Adobe suite for prototyping and graphics
 
 ### **How does it work?**
 
