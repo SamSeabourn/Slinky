@@ -70,7 +70,7 @@ function initalizeFirebaseUpdateListener() {
 function urlAlreadyExists(url) {
     let exists;
     bookmarkDB.orderByChild('url').equalTo(url).on("value", function (snapshot) {
-        exists = (snapshot.val() !== null)
+        exists = (snapshot.val() !== null || undefined)
     })
     return exists;
 }
@@ -143,15 +143,15 @@ function loadCache(){
     })
 }
 //Waiting for data from the popup.js
-chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        var newBookmark = request;
-        saveData(newBookmark)
-        sendResponse({ message: "Sending data to DB" });
-    });
+// chrome.runtime.onMessage.addListener(
+//     function (request, sender, sendResponse) {
+//         var newBookmark = request;
+//         saveData(newBookmark)
+//         sendResponse({ message: "Sending data to DB" });
+//     });
 
 //Waiting for requests from the Tabs  
-chrome.runtime.onMessageExternal.addListener(
+chrome.runtime.onMessage.addListener(
     function (task, sender, sendResponse) {
         switch (task.task) {
             case "getAllbookmarks":
@@ -173,10 +173,13 @@ chrome.runtime.onMessageExternal.addListener(
                 loadCache();
                 sendResponse({ data: usersBookmarks })
                 break;
+            case "SaveBookmark":
+                saveData(task.data)
+                sendResponse({ data: usersBookmarks });
             default:
                 sendResponse({ data: usersBookmarks })
-                break;
         }
+        return true;
 });
 
 

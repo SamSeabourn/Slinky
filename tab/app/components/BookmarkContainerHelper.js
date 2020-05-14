@@ -7,7 +7,7 @@ class BookmarkContainerHelper extends Component{
 
     render(){
         return(  
-            <div className="helper-message">
+            <div className="helper-message unselectable">
                 <img src={ HotKeysImg }></img>
                 <br></br>
                 1. Configure your hotkeys
