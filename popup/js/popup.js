@@ -90,7 +90,7 @@ function updateTitle() {
 }
 
 function sendWebsiteToFirebase() {
-  chrome.runtime.sendMessage("eniajemgofmchohalpnjoodmpbkgegna", {task: 'SaveBookmark', data: currentWebsite }, function (response) {
+  chrome.runtime.sendMessage( chrome.runtime.id , {task: 'SaveBookmark', data: currentWebsite }, function (response) {
   });
 }
 
