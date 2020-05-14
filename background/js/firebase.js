@@ -70,7 +70,7 @@ function initalizeFirebaseUpdateListener() {
 function urlAlreadyExists(url) {
     let exists;
     bookmarkDB.orderByChild('url').equalTo(url).on("value", function (snapshot) {
-        if (snapshot.val() === null || snapshot.val() !== undefined) {
+        if (snapshot.val() === null) {
             exists = false;
         } else {
             exists = true;
