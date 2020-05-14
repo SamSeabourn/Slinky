@@ -15,7 +15,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         currentUser.refreshToken = user.refreshToken;
         initalizeFirebaseUpdateListener();
     } else {
-        console("Authentication Error")
+        console.log("Authentication Error")
     }
 });
 
@@ -33,6 +33,7 @@ function updateBookmark(bookmarkId, updatedBookmark) {
 
 function initalizeFirebaseUpdateListener() {
     function gotData(data) {
+        if (data === null || data === undefined ) return 
         usersBookmarks = [];
         var bookmarks = data.val()
         var keys = Object.keys(bookmarks)
@@ -142,13 +143,6 @@ function loadCache(){
             bookmarkDB.on('value', gotData, errData)
     })
 }
-//Waiting for data from the popup.js
-// chrome.runtime.onMessage.addListener(
-//     function (request, sender, sendResponse) {
-//         var newBookmark = request;
-//         saveData(newBookmark)
-//         sendResponse({ message: "Sending data to DB" });
-//     });
 
 //Waiting for requests from the Tabs  
 chrome.runtime.onMessage.addListener(

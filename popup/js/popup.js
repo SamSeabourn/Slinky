@@ -119,7 +119,7 @@ function showHideSlinkyTips(display) {
       slinkyTipsDiv.classList.add('hide')
       break;
     default:
-      console.log('Sort it out man')
+      return
   }
 }
 

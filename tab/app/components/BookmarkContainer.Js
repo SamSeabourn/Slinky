@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import BookmarkContainerHelper from './BookmarkContainerHelper'
 import "regenerator-runtime/runtime";
 
+
 export class BookmarkContainer extends Component {
     _isMounted = false;
 
@@ -65,7 +66,7 @@ export class BookmarkContainer extends Component {
         //Leaving this function in as here allows the state to update instantly and I can polling take longer
         let fetchBookmarks = new Promise(function (resolve, reject) {
             var data
-            chrome.runtime.sendMessage("eniajemgofmchohalpnjoodmpbkgegna", { task: task, bId: bookmarkId, data: sendData }, function (response) {
+            chrome.runtime.sendMessage(chrome.runtime.id, { task: task, bId: bookmarkId, data: sendData }, function (response) {
                 data = response.data
                 resolve(data)
             })
@@ -82,7 +83,7 @@ export class BookmarkContainer extends Component {
         setInterval(() => {
             let fetchBookmarks = new Promise(function (resolve, reject) {
                 var data
-                chrome.runtime.sendMessage("eniajemgofmchohalpnjoodmpbkgegna", { task: "getAllbookmarks" }, function (response) {
+                chrome.runtime.sendMessage(chrome.runtime.id, { task: "getAllbookmarks" }, function (response) {
                     data = response.data
                     resolve(data)
                 })
@@ -209,12 +210,6 @@ export class BookmarkContainer extends Component {
             this.chromeExtensionService("updateAllBookmarks", null, newState)
         }
   
-    }
-
-    openCurrentSelection = (e) => {
-        if (e.key == 'Enter') {
-            console.log('Enter pressed')
-        }   
     }
 
     render() {

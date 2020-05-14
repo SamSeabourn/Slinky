@@ -1,4 +1,3 @@
-console.log('hello from the content script')
-
+//TODO add right click functionality
 
 

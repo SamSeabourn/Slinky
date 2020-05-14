@@ -14,7 +14,7 @@ class SideBar extends Component{
     }
 
     openChromeShortcuts = () => {
-        chrome.runtime.sendMessage("eniajemgofmchohalpnjoodmpbkgegna", { task: "openChromeExtensionHotkeys" }, function () {})
+        chrome.runtime.sendMessage(chrome.runtime.id, { task: "openChromeExtensionHotkeys" }, function () {})
     }
 
     render(){

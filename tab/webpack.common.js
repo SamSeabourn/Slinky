@@ -19,6 +19,4 @@ module.exports = {
             template : 'app/index.html'
         }),
     ],
-    
-
 }
