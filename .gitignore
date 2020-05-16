@@ -2,3 +2,4 @@ node_modules
 firebaseKeys.js
 dist
 tests
+gitignore
