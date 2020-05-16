@@ -5,6 +5,7 @@
 
 The idea behind Slinky is to create a bookmarking system that utilizes hotkeys and hashtags. 
 This means you can save and manage links without rifling through folders.
+Slinky is an  experiment to help me understand React.js, Webpack, Googles Firebase and how to develop chrome extensions with them. 
 
 ![](slinky-demo.gif)
 
@@ -27,8 +28,9 @@ To view bookmarks
 - Firebase with anonymous auth
 - Vanilla JavaScript
 - Vanilla CSS
-- Google chrome extension tools
-- Adobe suite for prototyping and graphics
+- Google Chrome extension tools
+- Figma for prototyping
+- Adobe Illustrator for graphics
 
 
 
