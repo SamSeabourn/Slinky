@@ -56,7 +56,7 @@ function initalizeFirebaseUpdateListener() {
 
     function errData(data) {
         console.error("Error")
-        console.error(err)
+        console.error(data)
     }
 
     bookmarkDB = firebase.database().ref(`/users/${currentUser.uId}/bookmarks`)
@@ -70,7 +70,8 @@ function initalizeFirebaseUpdateListener() {
 function urlAlreadyExists(url) {
     let exists;
     bookmarkDB.orderByChild('url').equalTo(url).on("value", function (snapshot) {
-        if (snapshot.val() === null) {
+        value = snapshot.val()
+        if (value == null || value == undefined) {
             exists = false;
         } else {
             exists = true;
