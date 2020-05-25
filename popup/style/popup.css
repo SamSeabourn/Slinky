@@ -17,6 +17,10 @@ input {
     color: #fff;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 ::placeholder {
     color: rgba(255,255,255,0.8);
     font-style: italic;

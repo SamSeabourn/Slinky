@@ -94,7 +94,6 @@ body {
     background: white;
 }
 
-
 .search-area .bookmark.selected {
     background: rgb(41,171,226);
     background: linear-gradient(240deg, rgba(41,171,226,1) 0%, rgba(255,123,172,1) 100%);

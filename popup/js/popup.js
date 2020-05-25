@@ -1,11 +1,5 @@
-let currentWebsiteUrlElement;
-let tagInputElement;
-let tagContainerElement;
-let currentWebsiteTitleElement;
-let currentWebsiteImageElement;
+let currentWebsiteUrlElement, tagInputElement, tagContainerElement, currentWebsiteTitleElement, currentWebsiteImageElement, shortcutMessage1, openSlinkyTab;
 let currentWebsite = new Bookmark();
-let chromeCommands;
-let shortcutMessage1;
 
 chrome.commands.getAll(function(commands){
   chromeCommands = commands
@@ -18,7 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
   tagContainerElement = document.getElementById('tagContainerElement');
   currentWebsiteImageElement = document.getElementById('currentWebsiteImageElement');
   shortcutMessage1 = document.getElementById('shortcutMessage1');
-  shortcutMessage2= document.getElementById('shortcutMessage2');
+  shortcutMessage2 = document.getElementById('shortcutMessage2');
+  openSlinkyTab = document.getElementById('slinkyNav')
+
+  openSlinkyTab.addEventListener("click", openSlinky);
 
   chrome.tabs.getSelected(null, function (tab) {
     if (tab.url !== undefined || tab.url !== null) {
@@ -53,6 +50,10 @@ window.addEventListener("keydown", function(e) {
   }
 }, true);
 
+function openSlinky() {
+  chrome.tabs.create({url:"../../tab/app/index.html"});
+}
+
 function updatePopup() {
   currentWebsiteUrlElement.value = currentWebsite.url;
   currentWebsiteTitleElement.value = currentWebsite.title;
@@ -65,6 +66,7 @@ function renderTags(tags) {
     var tagElement = document.createElement("SPAN");
     tagElement.innerHTML = '#' + tags[i];
     tagElement.classList.add("slinky-tag")
+    tagElement.classList.add("pointer")
     tagElement.onclick = function () { removeTagFromList(tags[i]); };
     tagContainerElement.appendChild(tagElement)
   }
