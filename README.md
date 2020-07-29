@@ -8,7 +8,7 @@ This means you can save and manage links without rifling through folders.
 Slinky is an  experiment to help me understand React.js, Webpack, Googles Firebase and how to develop chrome extensions with them. 
 Currently undergoing testing. 
 
-![](slink-demo.gif)
+![](slinky-demo.gif)
 
 
 ### **How does it work?**
